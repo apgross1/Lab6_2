@@ -67,11 +67,11 @@ public class Hand extends HandDomainModel {
 	public static ArrayList<Hand> ListHands(Hand PlayerHand, Hand CommonHand, GamePlay gme) {
 
 		ArrayList<Hand> CombinHands = new ArrayList<Hand>();
-		int iPlayerNumberOfCards = gme.getRule().GetPlayerNumberOfCards();
-		int iPlayerCardsMin = gme.getRule().getPlayerCardsMin();
-		int iPlayerCardsMax = gme.getRule().getPlayerCardsMax();
-		int iCommonCardsMin = gme.getRule().getCommunityCardsMin();
-		int iCommonCardsMax = gme.getRule().getCommunityCardsMax();
+		int iPlayerNumberOfCards = gme.getRule().getGrD().getPLAYERNUMBEROFCARDS();
+		int iPlayerCardsMin = gme.getRule().getGrD().getPLAYERCARDSMIN();
+		int iPlayerCardsMax = gme.getRule().getGrD().getPLAYERCARDSMAX();
+		int iCommonCardsMin = gme.getRule().getGrD().getCOMMUNITYCARDSMIN();
+		int iCommonCardsMax = gme.getRule().getGrD().getCOMMUNITYCARDSMAX();
 		
 		
 		for (int iPassPlayer = 0; iPassPlayer <= (iPlayerCardsMax - iPlayerCardsMin);iPassPlayer++)

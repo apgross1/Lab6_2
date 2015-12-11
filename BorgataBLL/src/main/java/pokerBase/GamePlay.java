@@ -7,11 +7,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import logic.GameWildRuleBLL;
 import domain.DeckDomainModel;
 import domain.GamePlayDomainModel;
+import domain.GameRuleDomainModel;
 import domain.RuleDomainModel;
 
-public class GamePlay extends GamePlayDomainModel {
+public class GamePlay {
 
 	private ArrayList<Player> GamePlayers = new ArrayList<Player>();
 	private ArrayList<GamePlayPlayerHand> GamePlayerHand = new ArrayList<GamePlayPlayerHand>();
@@ -19,14 +21,11 @@ public class GamePlay extends GamePlayDomainModel {
 	private Rule rle;
 	private Deck GameDeck = null;
 	
-	public GamePlay(Rule rle)
+	public GamePlay(Rule gr)
 	{
-		this.setGameID(UUID.randomUUID());
-		this.setNbrOfCards(rle.GetPlayerNumberOfCards());
-		this.setMaxNbrOfPlayers(rle.GetMaxNumberOfPlayers());
-		this.setNbrOfJokers(rle.GetNumberOfJokers());
-		this.setWildCards(rle.GetRuleCards());
-		this.rle = rle;
+		this.rle = gr;
+		this.rle.setGAMEID(UUID.randomUUID());
+		this.rle.setWildCards(GameWildRuleBLL.getRuleWilds(gr.getGrD().getRULEID()));
 	}
 
 	public Rule getRule()
@@ -69,7 +68,7 @@ public class GamePlay extends GamePlayDomainModel {
 		GamePlayPlayerHand GPCH = null;
 		for (GamePlayPlayerHand GPPH: GameCommonHand)
 		{
-			if (GPPH.getGame().getGameID() == gme.getGameID())
+			if (GPPH.getGame().getRule().getGAMEID() == gme.getRule().getGAMEID())
 			{
 				GPCH = GPPH;
 			}

@@ -157,14 +157,14 @@ public class RootLayoutController implements Initializable {
 			@Override
 			public void handle(ActionEvent e) {
 				System.out.println("omaha toggled");
-				PokerTableController.setRle(new Rule(eGame.Omaha));
+				PokerTableController.setRle(new Rule());
 			}
 		});
 		Texas.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
 				System.out.println("texas toggled");
-				PokerTableController.setRle(new Rule(eGame.TexasHoldEm));
+				PokerTableController.setRle(new Rule());
 			}
 		});
 
@@ -172,7 +172,7 @@ public class RootLayoutController implements Initializable {
 			@Override
 			public void handle(ActionEvent e) {
 				System.out.println("fcd toggled");
-				PokerTableController.setRle(new Rule(eGame.FiveStud));
+				PokerTableController.setRle(new Rule());
 			}
 		});
 
@@ -180,7 +180,7 @@ public class RootLayoutController implements Initializable {
 			@Override
 			public void handle(ActionEvent e) {
 				System.out.println("scd toggled");
-				PokerTableController.setRle(new Rule(eGame.SevenDraw));
+				PokerTableController.setRle(new Rule());
 			}
 		});
 
@@ -188,7 +188,7 @@ public class RootLayoutController implements Initializable {
 			@Override
 			public void handle(ActionEvent e) {
 				System.out.println("one joker toggled");
-				PokerTableController.setRle(new Rule(eGame.FiveStudOneJoker));
+				PokerTableController.setRle(new Rule());
 			}
 		});
 
@@ -196,7 +196,7 @@ public class RootLayoutController implements Initializable {
 			@Override
 			public void handle(ActionEvent e) {
 				System.out.println("two joker toggled");
-				PokerTableController.setRle(new Rule(eGame.FiveStudTwoJoker));
+				PokerTableController.setRle(new Rule());
 			}
 		});
 

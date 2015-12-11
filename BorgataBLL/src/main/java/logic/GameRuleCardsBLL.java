@@ -47,4 +47,13 @@ public class GameRuleCardsBLL   {
 		
 	}
 	
+	public static ArrayList<Integer> getDrawOrder(ArrayList<GameRuleCardsDomainModel> grCards) {
+		ArrayList<Integer> iCardDrawn = new ArrayList<Integer>();
+		for (GameRuleCardsDomainModel grC : grCards) {	
+			iCardDrawn.add(grC.getNBROFCARDS());
+		}
+		
+		return iCardDrawn;
+	}
+	
 }

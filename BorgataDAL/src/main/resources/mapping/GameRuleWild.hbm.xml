@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2014 2:49:57 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="domain.GameRuleWildDomainModel" table="TBL_RULE_WILD">
+
+		<composite-id>
+			<key-property name="RULEID" column="RULEID" length="5" />
+			<key-property name="WILDID" column="WILDID" length="5" />
+		</composite-id>
+
+		<property name="CARDRANK" type="string">
+			<column name="CARDRANK" length="20" not-null="true" />
+		</property>
+
+		<property name="CARDSUIT" type="string">
+			<column name="CARDSUIT" length="20" not-null="true" />
+		</property>
+
+	</class>
+</hibernate-mapping>

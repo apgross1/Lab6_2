@@ -1,7 +1,10 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.UUID;
 public class GameRuleDomainModel {
 
+	
 	protected int RULEID;
 	protected String RULENAME;
 	protected int MAXNUMBEROFPLAYERS;
@@ -13,6 +16,7 @@ public class GameRuleDomainModel {
 	protected int COMMUNITYCARDSMAX;
 	protected int POSSIBLEHANDCOMBINATIONS;
 	protected int DEFAULTGAME;
+	
 	
 	public GameRuleDomainModel()
 	{
@@ -84,6 +88,8 @@ public class GameRuleDomainModel {
 	public void setDEFAULTGAME(int dEFAULTGAME) {
 		DEFAULTGAME = dEFAULTGAME;
 	}
+	
+	
 	
 	
 }

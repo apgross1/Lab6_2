@@ -92,7 +92,7 @@ public class PokerTableController {
 	private ImageView imgTransCardP4 = new ImageView();
 	private ImageView imgTransCardCommon = new ImageView();
 	
-	private static Rule rle = new Rule(eGame.FiveStud);
+	private static Rule rle = new Rule();
 
 	public static void setRle(Rule rle) {
 		PokerTableController.rle = rle;
@@ -273,7 +273,8 @@ public class PokerTableController {
 		HashMap<String, GameRuleDomainModel> hs = new HashMap();
 		hs = GameRuleBLL.getRuleHashSet();		
 		GameRuleDomainModel gr = hs.get(strRuleName);
-		
+		Rule rule = new Rule(gr);
+		setRle(rule);
 		
 		
 		//tglGame = mainApp.getToggleGroup();
@@ -300,7 +301,7 @@ public class PokerTableController {
 		winner4.setVisible(false);
 
 		// Get the Rule, start the Game
-		gme = new GamePlay(rle);
+		gme = new GamePlay(rule);
 
 		// Add the seated players to the game
 		for (Player p : mainApp.GetSeatedPlayers()) {
@@ -310,7 +311,7 @@ public class PokerTableController {
 			GPPH.setPlayer(p);
 			GPPH.setHand(new Hand());
 			gme.addGamePlayPlayerHand(GPPH);
-			DealFaceDownCards(gme.getNbrOfCards(), p.getiPlayerPosition());
+			DealFaceDownCards(gme.getRule().getGrD().getPLAYERNUMBEROFCARDS(), p.getiPlayerPosition());
 		}
 
 		GamePlayPlayerHand GPCH = new GamePlayPlayerHand();
@@ -318,10 +319,10 @@ public class PokerTableController {
 		GPCH.setPlayer(PlayerCommon);
 		GPCH.setHand(new Hand());
 		gme.addGamePlayCommonHand(GPCH);
-		DealFaceDownCards(gme.getRule().GetCommunityCardsCount(), 0);
+		DealFaceDownCards(gme.getRule().getGrD().getCOMMUNITYCARDSMAX(), 0);
 
 		// Add a deck to the game
-		gme.setGameDeck(new Deck(rle.GetNumberOfJokers(), rle.GetRuleCards()));
+		gme.setGameDeck(new Deck(gme.getRule().getGrD().getNUMBEROFJOKERS(), gme.getRule().getWildCards()));
 
 		// Call common code to set the game controls
 		SetGameControls(eGameState);
@@ -386,6 +387,7 @@ public class PokerTableController {
 			// Draw a card for each player seated
 			for (int iDraw = 0; iDraw < act.getiCardDrawn(); iDraw++) {
 				iCardDrawnPlayer++;
+				System.out.println("iCardDrawnPlayer" + iCardDrawnPlayer);
 				for (Player p : mainApp.GetSeatedPlayers()) {
 					Card c = gme.getGameDeck().drawFromDeck();
 
@@ -421,6 +423,7 @@ public class PokerTableController {
 
 			for (int iDraw = 0; iDraw < act.getiCardDrawn(); iDraw++) {
 				iCardDrawnCommon++;
+				System.out.println("iCardDrawnCommon" + iCardDrawnCommon);
 				imView = imgTransCardCommon;
 				Card c = gme.getGameDeck().drawFromDeck();
 				gme.FindCommonHand(gme).addCardToHand(c);
@@ -465,32 +468,6 @@ public class PokerTableController {
 			
 			
 		} else {
-			
-			
-			if (iCardDrawnPlayer + iCardDrawnCommon + 2 >= gme.getRule().getTotalCardsToDraw()) {
-				for (Player p : mainApp.GetSeatedPlayers()) {
-					Hand hPlayer = gme.FindPlayerGame(gme, p).getHand();
-					for (int a = hPlayer.getCards().size(); a < gme.getRule().GetPlayerNumberOfCards(); a++) {
-						hPlayer.AddCardToHand(new Card(eSuit.JOKER, eRank.JOKER, 0));
-					}
-
-					Hand hCommon = gme.FindCommonHand(gme).getHand();
-
-					if (hCommon.getCards() == null) {
-						for (int a = 0; a < gme.getRule().GetCommunityCardsCount(); a++) {
-							hCommon.AddCardToHand(new Card(eSuit.JOKER, eRank.JOKER, 0));
-						}
-					} else {
-
-						for (int a = hCommon.getCards().size(); a < gme.getRule().GetCommunityCardsCount(); a++) {
-							hCommon.AddCardToHand(new Card(eSuit.JOKER, eRank.JOKER, 0));
-						}
-					}
-					ArrayList<Hand> AllHands = Hand.ListHands(hPlayer, hCommon, gme);
-
-				}
-			}
-
 			// Re-enable the draw button
 			SetGameControls(eGameState);
 		}
@@ -544,7 +521,7 @@ public class PokerTableController {
 			}
 		}
 		
-		if(rle.GetCommunityCardsCount() > 0) {
+		if(gme.getRule().getGrD().getCOMMUNITYCARDSMAX() > 0) {
 			for(int i = 0; i < winningHand.getCardsInHand().size(); i++) {
 				for(int q = 0; q < communityC.getCardsInHand().size(); q++) {
 					if(winningHand.GetCardFromHand(i) == communityC.GetCardFromHand(q)) {

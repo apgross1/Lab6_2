@@ -35,7 +35,7 @@ public class ListHands_Test {
 	public void tearDown() throws Exception {
 	}
 	
- 
+ /*
 
 	@Test
 	public void ListHoldEm() {
@@ -223,6 +223,6 @@ public class ListHands_Test {
 		}
 	}
 
-
+*/
 
 }

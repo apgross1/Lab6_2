@@ -14,19 +14,21 @@ public class Action {
 		
 		this.setGme(gme);
 		this.bEvaluateHand = false;
-		if (iCardDrawnPlayer < gme.getRule().GetPlayerNumberOfCards()) {
+		if (iCardDrawnPlayer < gme.getRule().getGrD().getPLAYERNUMBEROFCARDS()) {
 			eDrawAction = eDrawAction.DrawPlayer;
 			iCardDrawnPlayer++;
-		} else if ((iCardDrawnPlayer >= gme.getRule().GetPlayerNumberOfCards())
-				&& (iCardDrawnCommon <= gme.getRule().GetCommunityCardsCount())) {
+			System.out.println("iCardDrawnPlayer: " + iCardDrawnPlayer );
+		} else if ((iCardDrawnPlayer >= gme.getRule().getGrD().getPLAYERNUMBEROFCARDS())
+				&& (iCardDrawnCommon <= gme.getRule().getGrD().getCOMMUNITYCARDSMAX())) {
 			eDrawAction = eDrawAction.DrawCommon;
 			iCardDrawnCommon++;
+			System.out.println("iCardDrawnCommon: " + iCardDrawnCommon);
 		}
-		if (iCardDrawnPlayer + iCardDrawnCommon == gme.getRule().getTotalCardsToDraw())
+		if (iCardDrawnPlayer + iCardDrawnCommon == (gme.getRule().getGrD().getPLAYERNUMBEROFCARDS() + gme.getRule().getGrD().getCOMMUNITYCARDSMAX()))
 		{
 			this.bEvaluateHand = true;
 		}
-		this.setiCardDrawn(gme.getRule().getiCardsToDraw()[iDrawCount-1]);
+		this.setiCardDrawn(gme.getRule().getiCardsToDraw().get(iDrawCount-1).intValue());
 	}
 
 	public GamePlay getGme() {
