@@ -37,19 +37,6 @@ public class GameWildRuleBLL {
 		return cardDomainWilds;
 
 	}
-	
-	//Do we even need to create a HashMap for the wilds?
-	
-	/*public static HashMap<Integer,CardDomainModel> getRuleHashSet(int RuleID) {
-		HashMap<Integer, CardDomainModel> HashRuleWildSet = new HashMap<Integer, CardDomainModel>();
-		
-		for (GameRuleWildDomainModel grWild: getRuleWilds(RuleID))
-		{
-			HashRuleWildSet.put(grWild.getWILDID(), grWild);
-		}
-		return HashRuleWildSet;
-		
-	}*/
 
 	private static ArrayList<CardDomainModel> grWildToCardDM(ArrayList<GameRuleWildDomainModel> wilds) {
 		ArrayList<CardDomainModel> cardDomainWilds = new ArrayList<CardDomainModel>();

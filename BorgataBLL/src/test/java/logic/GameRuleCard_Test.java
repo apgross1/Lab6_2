@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import domain.GameRuleCardsDomainModel;
+import domain.GameRuleDomainModel;
 import logic.GameRuleBLL;
 
 public class GameRuleCard_Test {
@@ -43,6 +45,21 @@ public class GameRuleCard_Test {
 		
 		assertTrue(grCards.size() > 0);
 		
+	}
+	
+	/**
+	 * Test for getDrawOrder using FiveStud
+	 */
+	@Test
+	public void getOrder() {
+		grCards = GameRuleCardsBLL.getCardsRules(1); //FiveStud
+		ArrayList<Integer> order = GameRuleCardsBLL.getDrawOrder(grCards);
+		
+		assertTrue(order.get(0) == 2); //Draw 2
+		assertTrue(order.get(1) == 1); //Draw 1
+		assertTrue(order.get(2) == 1); //Draw 1
+		assertTrue(order.get(3) == 1); //Draw 1
+	
 	}
 	
 }

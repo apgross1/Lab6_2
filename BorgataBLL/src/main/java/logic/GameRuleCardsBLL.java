@@ -33,20 +33,6 @@ public class GameRuleCardsBLL   {
 
 	}
 	
-	public static HashMap<String, GameRuleCardsDomainModel> getRuleCardsHashSet(int RuleID)
-	{
-		HashMap<String, GameRuleCardsDomainModel> HashRuleCardsSet = new HashMap();
-		
-		for (GameRuleCardsDomainModel grCards: getCardsRules(RuleID))
-		{
-			String keyVal =  "" + grCards.getRULECARDID();
-			
-			HashRuleCardsSet.put(keyVal, grCards);
-		}
-		return HashRuleCardsSet;
-		
-	}
-	
 	public static ArrayList<Integer> getDrawOrder(ArrayList<GameRuleCardsDomainModel> grCards) {
 		ArrayList<Integer> iCardDrawn = new ArrayList<Integer>();
 		for (GameRuleCardsDomainModel grC : grCards) {	

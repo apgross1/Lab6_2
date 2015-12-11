@@ -47,26 +47,6 @@ public class RootLayoutController implements Initializable {
 	@FXML
 	private ToggleGroup tglGames;
 
-	@FXML
-	private RadioMenuItem Omaha = new RadioMenuItem();
-
-	@FXML
-	private RadioMenuItem Texas = new RadioMenuItem();
-
-	// Five Card Draw
-	@FXML
-	private RadioMenuItem FCD = new RadioMenuItem();
-
-	// Seven Card Draw
-	@FXML
-	private RadioMenuItem SCD = new RadioMenuItem();
-
-	@FXML
-	private RadioMenuItem oneJoker = new RadioMenuItem();
-
-	@FXML
-	private RadioMenuItem twoJoker = new RadioMenuItem();
-
 	public String getRuleName()
 	{	
 		String strRuleName = null;
@@ -74,6 +54,7 @@ public class RootLayoutController implements Initializable {
 		{
 			if (m.getText() == "Games")
 			{
+				
 				for (MenuItem mi: m.getItems())
 				{
 					if (mi.getClass().equals(RadioMenuItem.class))
@@ -94,7 +75,8 @@ public class RootLayoutController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		ToggleGroup toggle = new ToggleGroup();
+		setTglGames(toggle);
 		Menu m = new Menu();
 		m.setText("Games");
 
@@ -150,56 +132,6 @@ public class RootLayoutController implements Initializable {
 	 * @param mainApp
 	 */
 	public void setMainApp(MainApp mainApp) {
-		Omaha.setToggleGroup(tglGames);
-		Texas.setToggleGroup(tglGames);
-		FCD.setToggleGroup(tglGames);
-		Omaha.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				System.out.println("omaha toggled");
-				PokerTableController.setRle(new Rule());
-			}
-		});
-		Texas.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				System.out.println("texas toggled");
-				PokerTableController.setRle(new Rule());
-			}
-		});
-
-		FCD.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				System.out.println("fcd toggled");
-				PokerTableController.setRle(new Rule());
-			}
-		});
-
-		SCD.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				System.out.println("scd toggled");
-				PokerTableController.setRle(new Rule());
-			}
-		});
-
-		oneJoker.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				System.out.println("one joker toggled");
-				PokerTableController.setRle(new Rule());
-			}
-		});
-
-		twoJoker.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				System.out.println("two joker toggled");
-				PokerTableController.setRle(new Rule());
-			}
-		});
-
 		this.mainApp = mainApp;
 	}
 
